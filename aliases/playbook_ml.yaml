@@ -4,10 +4,6 @@
 name: "playbook_ml"
 action_ref: "ansible.playbook"
 description: "Run MachineLearning Ansible playbook"
-parameters:
-  roles_path: "/opt/ansible/roles"
-  inventory_file: "/opt/ansible/dev"
-  playbook: "/opt/ansible/playbooks/ml.yml"
 formats:
   - display: "playbook ml <command>"
     representation:
