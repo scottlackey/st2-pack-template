@@ -1,0 +1,23 @@
+# refers to `ansible` st2 integration pack:
+# https://github.com/StackStorm/st2contrib/tree/master/packs/ansible
+---
+name: "playbook_ml"
+action_ref: "ansible.playbook"
+description: "Run MachineLearning Ansible playbook"
+parameters:
+  roles_path: "/opt/ansible/roles"
+  inventory_file: "/opt/ansible/dev"
+  playbook: "/opt/ansible/playbooks/ml.yml"
+formats:
+  - display: "playbook ml <command>"
+    representation:
+      - "playbook ml ( for {{limit=all}})?( '{{playbook=/opt/ansible/playbooks/ml.yml}}' '{{inventory_file=/opt/ansible/dev}}')?"
+result:
+  format: |
+    Ansible command `{{ execution.parameters.args }}` result: {~}
+    {% if execution.result.stderr %}*Stdout:* {% endif %}
+    ```{{ execution.result.stdout }}```
+    {% if execution.result.stderr %}*Stderr:* ```{{ execution.result.stderr }}```{% endif %}
+  extra:
+    slack:
+      color: "{% if execution.result.succeeded %}good{% else %}danger{% endif %}"
