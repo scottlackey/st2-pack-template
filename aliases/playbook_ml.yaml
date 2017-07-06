@@ -5,9 +5,9 @@ name: "playbook_ml"
 action_ref: "ansible.playbook"
 description: "Run MachineLearning Ansible playbook"
 formats:
-  - display: "playbook ml <command>"
+  - display: "playbook <command>"
     representation:
-      - "playbook ml ( for {{limit=all}})?( '{{playbook=/opt/ansible/playbooks/ml.yml}}' '{{inventory_file=/opt/ansible/dev}}')?"
+      - "playbook ( for {{limit=all}})?( '{{playbook=/opt/ansible/playbooks/ml.yml}}' '{{inventory_file=/opt/ansible/dev}}')?"
 result:
   format: |
     Ansible command `{{ execution.parameters.args }}` result: {~}
